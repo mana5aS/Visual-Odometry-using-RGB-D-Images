@@ -24,16 +24,15 @@ Finally, the dataset also provides the camera intrinsic parameters for calibrati
 ## Experimental Results 
 ### Comparison with Ground Truth 
 We analysed the performance of our implementation by primarily plotting and calculating the error between the estimate and the ground-truth. This is a standard way of measuring performance which is the most intuitive. 
-  1. __Overall Trajectory in 3D:__ The two plots below show the complete trajectory of the Kinect camera that moves around a room. The trajectory almost forms a closed-loop. This estimated trajectory is fairly accurate in comparison to the ground truth and when compared to the camera movement observed in the dataset images.
+  1. __Overall Trajectory in 3D:__ The two plots below show the complete trajectory of the Kinect camera that moves around a room.
 
   2. __Effect of initial Transformation:__ After performing thorough experimentation with different initial transformation values, we realised that the ICP algorithm heavily depends on sufficient overlap and initial alignment of two point clouds. If the initial pose of the camera in the fixed frame (initial transformation) is very different from the actual pose in the fixed frame, then ICP finds it very hard to converge leading to bad pose estimations. Therefore, finding a good initial transformation is crucial for this algorithm to give good estimations. The graphs below show the difference in estimations when two different initial transformations were given.
 
-  3. __Absolute Trajectory Error (ATE):__ The Absolute Trajectory Error (ATE) measures the error between the estimated trajectory of the camera and the ground-truth trajectory at different timesteps. The below plots and table show the results obtained. We see that the algorithm was not able to estimate the trajectory accurately and has an average error of 1.47 meters. However, the estimated trajectory closely follows the path/pattern followed by the ground-truth trajectory. Finding a good initial estimate of transformation should result in better trajectory estimations.  
+  3. __Absolute Trajectory Error (ATE):__ The Absolute Trajectory Error (ATE) measures the error between the estimated trajectory of the camera and the ground-truth trajectory at different timesteps. The below plots and table show the results obtained. Finding a good initial estimate of transformation should result in better trajectory estimations.  
 
-  4. __Error in Orientation:__ To measure the error in orientation we plotted the estimated Roll, Pitch and Yaw against the ground-truth as shown below. We see that the orientation estimates are quite good when compared to the ground-truth, especially the roll estimates. Finding a good initial estimate of transformation should result in better orientation estimations.
+  4. __Error in Orientation:__ To measure the error in orientation we plotted the estimated Roll, Pitch and Yaw against the ground-truth as shown below. Finding a good initial estimate of transformation should result in better orientation estimations.
 
 
 
 ### Performance of different Feature Detectors
-Here we tested our algorithm with different feature detectors, namely, Shi-Tomasi (baseline), SIFT and ORB. Thesethree were specifically chosen since they are widely used for feature detection. The performance was tested based on computational speed. The below table summarises the time taken for the execution of the algorithm with the different feature detectors. We see that the Shi-Tomasi feature detector is faster and leads to lesser overall computational time as compared to the other two. This was the reason we went ahead with using Shi-Tomasi feature detector. Our code however is configurable to use any of the three feature detectors.
-
+Here we tested our algorithm with different feature detectors, namely, Shi-Tomasi (baseline), SIFT and ORB. The performance was tested based on computational speed. The below table summarises the time taken for the execution of the algorithm with the different feature detectors. We see that the Shi-Tomasi feature detector is faster and leads to lesser overall computational time as compared to the other two. 
